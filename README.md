@@ -1,1 +1,1 @@
-# generic.core
+[![Build status](https://rcarvalhoxavier.visualstudio.com/create-web-api/_apis/build/status/create-web-api%20-%20CI%20-%20master)](https://rcarvalhoxavier.visualstudio.com/create-web-api/_build/latest?definitionId=5)
