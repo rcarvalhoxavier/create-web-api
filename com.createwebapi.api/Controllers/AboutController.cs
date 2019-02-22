@@ -1,4 +1,5 @@
-﻿using com.createwebapi.data.Helper;
+﻿using System;
+using com.createwebapi.data.Helper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace com.createwebapi.webapi.Controllers
@@ -18,8 +19,14 @@ namespace com.createwebapi.webapi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            _transactionInterceptor.TestConection();
-            return Ok();
+            try
+            {
+                _transactionInterceptor.TestConection();
+                return new JsonResult("Teste Conexão com sucesso");
+            }catch(Exception ex)
+            {
+                return BadRequest(ex);
+            }
         }
 
     }
