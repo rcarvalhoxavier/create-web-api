@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 using com.createwebapi.data.Helper;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +24,13 @@ namespace com.createwebapi.webapi.Controllers
             try
             {
                 _transactionInterceptor.TestConection();
-                return new JsonResult("Teste Conexão com sucesso");
+                var assembly = Assembly.GetExecutingAssembly();
+                var fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+                var version = fvi.FileVersion;
+                var buildNumber = fvi.ProductVersion;
+                var date = System.IO.File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location);
+
+                return Ok($"{version} - {date:dd/MM/yyyy} -  {buildNumber}");
             }catch(Exception ex)
             {
                 return BadRequest(ex);
